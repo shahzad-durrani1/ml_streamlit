@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 import dill
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load the pretrained model
 with open('model/employee_pipeline.pkl', 'rb') as file:
@@ -51,12 +53,14 @@ if st.button('Predict Churn'):
     prediction = predict_churn(input_data)[0]
     translation_dict = {1: "Expected", 0: "Not Expected"}
     prediction_translate = translation_dict.get(prediction)
+    st.write('### Prediction Result')
     if prediction == 1:
-        st.error(f'The Prediction is **{prediction}**, hence the employee is **{prediction_translate}** to leave. 😟')
+        st.error(f'The model predicts: **Employee is {prediction_translate} to leave** 😟')
     else:
-        st.success(f'The Prediction is **{prediction}**, hence the employee is **{prediction_translate}** to stay. 😊')
+        st.success(f'The model predicts: **Employee is {prediction_translate} to stay** 😊')
+
 
 # Add footer information
 st.markdown("---")
 st.markdown("#### 📌 Disclaimer: This prediction is based on historical data and should not be the sole factor in decision making.")
-st.markdown("#### 🛠️ Developed by Shahzad Ali Durrani - A Data Aficionado")
+st.markdown("#### 🛠️ Developed by [Your Name] - A Data Science Enthusiast")
