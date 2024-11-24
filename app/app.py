@@ -51,13 +51,13 @@ st.dataframe(input_data)
 # Churn Prediction
 if st.button('Predict Churn'):
     prediction = predict_churn(input_data)[0]
-    translation_dict = {1: "Expected", 0: "Not Expected"}
+    translation_dict = {1: "likely to leave", 0: "unlikely to leave"}
     prediction_translate = translation_dict.get(prediction)
     st.write('### Prediction Result')
     if prediction == 1:
-        st.error(f'The model predicts: **Employee is {prediction_translate} to leave** 😟')
+        st.error(f'The model predicts: **Employee is {prediction_translate}** 😟')
     else:
-        st.success(f'The model predicts: **Employee is {prediction_translate} to stay** 😊')
+        st.success(f'The model predicts: **Employee is {prediction_translate}** 😊')
 
 
 # Add footer information
